@@ -1,0 +1,43 @@
+DROP DATABASE IF EXISTS bd_api_conductor;
+CREATE DATABASE bd_api_conductor CHARSET utf8mb4;
+USE bd_api_conductor;
+
+-- Tabla de conductores
+CREATE TABLE conductor (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    nombres VARCHAR(100) NOT NULL,
+    edad INT(11) NOT NULL,
+    direccion VARCHAR(100) NOT NULL,
+    licencia VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+-- Tabla de vehículos
+CREATE TABLE vehiculo (
+    id INT(11) NOT NULL AUTO_INCREMENT,
+    conductor_id INT(11) NOT NULL,
+    marca VARCHAR(50) NOT NULL,
+    modelo VARCHAR(50) NOT NULL,
+    ano INT(4) NOT NULL,
+    placa VARCHAR(10) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (conductor_id) REFERENCES conductor(id)
+);
+
+-- Inserción de datos en la tabla conductor
+INSERT INTO conductor(nombres, edad, direccion, licencia) VALUES('Jeyson Lino', 30, 'Direccion 1', 'L123456');
+INSERT INTO conductor(nombres, edad, direccion, licencia) VALUES('Juan Herencia', 30, 'Direccion 2', 'L654321');
+INSERT INTO conductor(nombres, edad, direccion, licencia) VALUES('Jose Zuñiga', 30, 'Direccion 3', 'L789012');
+
+-- Inserción de datos en la tabla vehiculo
+INSERT INTO vehiculo(conductor_id, marca, modelo, ano, placa) VALUES(1, 'Toyota', 'Corolla', 2018, 'ABC1234');
+INSERT INTO vehiculo(conductor_id, marca, modelo, ano, placa) VALUES(1, 'Honda', 'Civic', 2019, 'XYZ5678');
+INSERT INTO vehiculo(conductor_id, marca, modelo, ano, placa) VALUES(1, 'Ford', 'Focus', 2017, 'LMN9012');
+INSERT INTO vehiculo(conductor_id, marca, modelo, ano, placa) VALUES(2, 'Chevrolet', 'Spark', 2016, 'DEF2345');
+INSERT INTO vehiculo(conductor_id, marca, modelo, ano, placa) VALUES(2, 'Nissan', 'Versa', 2015, 'GHI6789');
+INSERT INTO vehiculo(conductor_id, marca, modelo, ano, placa) VALUES(2, 'Hyundai', 'Elantra', 2020, 'JKL3456');
+INSERT INTO vehiculo(conductor_id, marca, modelo, ano, placa) VALUES(3, 'Mazda', '3', 2014, 'MNO7890');
+INSERT INTO vehiculo(conductor_id, marca, modelo, ano, placa) VALUES(3, 'Kia', 'Rio', 2013, 'PQR4567');
+INSERT INTO vehiculo(conductor_id, marca, modelo, ano, placa) VALUES(3, 'Subaru', 'Impreza', 2012, 'STU1234');
+
+COMMIT;
