@@ -71,13 +71,3 @@ def delete_conductor(id: int):
     mydb.commit()
     mydb.close()
     return {"message": "Conductor eliminado con éxito"}
-
-# Get vehicles by conductor ID
-@app.get("/conductor/{id}/vehiculos")
-def get_vehiculos_by_conductor(id: int):
-    mydb = mysql.connector.connect(host=host_name, port=port_number, user=user_name, password=password_db, database=database_name)
-    cursor = mydb.cursor()
-    cursor.execute("SELECT * FROM vehiculo WHERE conductor_id = %s", (id,))
-    result = cursor.fetchall()
-    mydb.close()
-    return {"vehiculos": result}
